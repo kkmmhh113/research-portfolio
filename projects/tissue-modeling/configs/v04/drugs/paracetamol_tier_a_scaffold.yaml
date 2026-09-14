@@ -1,0 +1,25 @@
+drug:
+  name: paracetamol_tier_a_scaffold_v04
+  smiles: "CC(=O)NC1=CC=C(C=C1)O"
+  molecular_weight_g_mol: 151.0
+  fraction_unbound_plasma: 0.82
+  absorption_rate_h: 2.18
+  fraction_absorbed: 1.0
+  kp_gut: 1.0
+  kp_liver: 1.0
+  kp_kidney: 1.0
+  kp_rest: 1.0
+  liver_vmax_mg_h: 1513.3930068292684
+  liver_km_mg_l: 69.762
+  liver_zone_activity: [0.20, 0.30, 0.50]
+  gut_vmax_mg_h: 0.0
+  gut_km_mg_l: 69.762
+  renal_clearance_l_h: 0.7412
+  metabolite_renal_clearance_l_h: 8.0
+  metabolite_mass_yield: 1.0
+  parameter_provenance: >-
+    Compatibility copy of the v0.3 zero-outcome-tuning paracetamol parent
+    configuration. The v0.4 Tier-A model reads parent physiology, fu, Kp, and
+    renal clearance here; its UGT/SULT/CYP reactions are defined separately in
+    configs/v04/reactions/paracetamol_tier_a_scaffold.yaml. No new outcome was
+    read and these values were not tuned for the Tier-A engine check.

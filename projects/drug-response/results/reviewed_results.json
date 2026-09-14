@@ -1,0 +1,176 @@
+{
+  "review_date": "2026-09-14",
+  "review_type": "Extraction of saved aggregate results; no training, inference, or test rescoring.",
+  "limitations": [
+    "Historical scPerturb v1.3 numeric response coordinates; gene labels are not validated.",
+    "Historical chemical structure mismappings were found; a reviewed v1.4 rebuild is pending.",
+    "Phase 6 reuses the previously evaluated outer set and is not independent confirmation.",
+    "Historical metrics average conditions, not equally weighted compounds."
+  ],
+  "phase4": {
+    "evidence_role": "historical first-use outer evaluation",
+    "compounds": 28,
+    "observations": 359,
+    "response_coordinates": 978,
+    "model": {
+      "mean_sample_pearson": 0.4326349198818207,
+      "median_sample_pearson": 0.43941834568977356,
+      "rmse": 0.13407377898693085,
+      "mae": 0.07960562407970428,
+      "top_50_deg_recall": 0.24924791086350973
+    },
+    "baselines": {
+      "zero_change": {
+        "mean_sample_pearson": 0.0,
+        "median_sample_pearson": 0.0,
+        "rmse": 0.1502871811389923,
+        "mae": 0.08729484677314758,
+        "top_50_deg_recall": 0.05626740947075209
+      },
+      "train_mean": {
+        "mean_sample_pearson": 0.17076149582862854,
+        "median_sample_pearson": 0.14399969577789307,
+        "rmse": 0.1478155106306076,
+        "mae": 0.08692215383052826,
+        "top_50_deg_recall": 0.16072423398328692
+      },
+      "context_mean": {
+        "mean_sample_pearson": 0.29915097030986937,
+        "median_sample_pearson": 0.27544957853110125,
+        "rmse": 0.1434838673237571,
+        "mae": 0.08478520697227264,
+        "top_50_deg_recall": 0.20640668523676886
+      },
+      "nearest_structure": {
+        "mean_sample_pearson": 0.1208012432116991,
+        "median_sample_pearson": 0.06214705370995865,
+        "rmse": 0.17247949758172798,
+        "mae": 0.1101455948159155,
+        "top_50_deg_recall": 0.16350974930362117
+      },
+      "nearest_structure_mean_tanimoto": 0.28119786429472704
+    },
+    "saved_paired_improvement": {
+      "pearson_gain": {
+        "estimate": 0.13348394632339478,
+        "ci95_low": 0.09462341666221619,
+        "ci95_high": 0.17203037440776825
+      },
+      "rmse_reduction": {
+        "estimate": 0.009410098195075989,
+        "ci95_low": 0.0020289305597543717,
+        "ci95_high": 0.015854667499661444
+      },
+      "mae_reduction": {
+        "estimate": 0.005179591476917267,
+        "ci95_low": 0.002171455696225166,
+        "ci95_high": 0.008244764991104603
+      }
+    },
+    "bootstrap_unit": "compound",
+    "bootstrap_samples": 2000,
+    "duration_subgroups": {
+      "24.0": {
+        "observations": 330,
+        "model_mean_sample_pearson": 0.43645837903022766,
+        "context_mean_sample_pearson": 0.2902534008026123,
+        "pearson_gain": 0.14620497822761536,
+        "rmse_reduction": 0.010248497128486633,
+        "mae_reduction": 0.005651399493217468
+      },
+      "72.0": {
+        "observations": 29,
+        "model_mean_sample_pearson": 0.389126181602478,
+        "context_mean_sample_pearson": 0.40039926767349243,
+        "pearson_gain": -0.011273086071014404,
+        "rmse_reduction": -0.0009400546550750732,
+        "mae_reduction": -0.0001892372965812683
+      }
+    },
+    "checkpoint_and_manifest_hashes_rechecked": true
+  },
+  "phase6": {
+    "evidence_role": "previously_evaluated_not_untouched",
+    "response_coordinates": 977,
+    "model": {
+      "mean_sample_pearson": 0.4674436886571763,
+      "median_sample_pearson": 0.48815029859542847,
+      "rmse": 0.13343395292758942,
+      "mae": 0.07816386967897415,
+      "top_50_deg_recall": 0.2615598885793872,
+      "observed_target_fraction": 1.0
+    },
+    "context": {
+      "mean_sample_pearson": 0.2988108802975277,
+      "median_sample_pearson": 0.2735629975795746,
+      "rmse": 0.14313678443431854,
+      "mae": 0.08488425612449646,
+      "top_50_deg_recall": 0.2099721448467967,
+      "observed_target_fraction": 1.0
+    },
+    "observations": 359,
+    "compounds": 28
+  },
+  "auxiliary_development_experiments": [
+    {
+      "experiment": "train-only molecular-target auxiliary supervision",
+      "status": "stopped_at_fold0_gate",
+      "selection_fold": 0,
+      "locked_outer_test_evaluated": false,
+      "winner": "target_w001",
+      "fold0_gain": -0.0007413368500084894,
+      "candidates_mean_sample_pearson": {
+        "control_w000": 0.38515098898648903,
+        "target_w001": 0.38440965213648054,
+        "target_w003": 0.3778216878413758,
+        "target_w010": 0.3821160260763069
+      }
+    },
+    {
+      "experiment": "train-only repeated target and MoA auxiliary supervision",
+      "status": "stopped_at_fold0_gate",
+      "selection_fold": 0,
+      "locked_outer_test_evaluated": false,
+      "winner": "repeated_moa_w001",
+      "fold0_gain": -0.004596344259901353,
+      "candidates_mean_sample_pearson": {
+        "control_w000": 0.3848262998414539,
+        "repeated_target_w001": 0.3778973573934188,
+        "repeated_moa_w001": 0.38022995558155254,
+        "repeated_moa_w003": 0.3795136867165236
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "project": "my_star",
+      "path": "artifacts/phase4_v2_final_adaptive_test/test_metrics.json",
+      "sha256": "b95729465b007309835e4129fe79d6ed15e6db024ff5940f49462aef26a76740"
+    },
+    {
+      "project": "my_star",
+      "path": "artifacts/phase4_v2_final_adaptive_test/robustness.json",
+      "sha256": "4ec0d07877f7e4ed4a5c9a41fad12e3950131a87e653c4f770a35a3da507b492"
+    },
+    {
+      "project": "my_star",
+      "path": "artifacts/phase4_v2_final_artifact_audit.json",
+      "sha256": "c6631fbc0c84b5accf19808598ccc48ff3fd2c339b238ffdb8207b23759816ed"
+    },
+    {
+      "project": "my_star",
+      "path": "artifacts/prc_phase6_outer_reanalysis/test_metrics.json",
+      "sha256": "97f7b32fb2602be814daacf5905ff1b337b2b129022545b647be53885b70f6d0"
+    },
+    {
+      "project": "my_star",
+      "path": "artifacts/prc_phase7_target_auxiliary_summary.json",
+      "sha256": "991cc3b8e9cf22d3eed37799efd9c55e0fca7e91233a8b68a78ebbef140e378d"
+    },
+    {
+      "project": "my_star",
+      "path": "artifacts/prc_phase7b_repeated_mechanism_auxiliary_summary.json",
+      "sha256": "eb752463c2454843dec284c219ab66220fe2cac0af60064af0e1f90e21253f64"
+    }
+  ]
+}

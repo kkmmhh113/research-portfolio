@@ -1,0 +1,41 @@
+mechanism:
+  mechanism_id: enalapril_ces1_linear_v04
+  law: linear_ces1
+  status: active_fixed_candidate
+  parent_species_id: enalapril
+  product_species_id: enalaprilat
+  stoichiometry_mol_parent_per_mol_product: 1.0
+  parameters:
+    parent_fraction_unbound:
+      value: 0.55
+      unit: fraction
+      bounds: [0.50, 0.65]
+      evidence_grade: C
+      parameter_role: fixed_independent
+      provenance: >-
+        Secondary literature prior already recorded in the v0.3 enalapril
+        configuration; not derived from a v0.4 development or locked curve.
+    aggregate_total_conversion_clearance:
+      value: 21.24
+      unit: L/h
+      bounds: [10.62, 42.48]
+      evidence_grade: C
+      parameter_role: fixed_independent
+      provenance: >-
+        354 mL/min secondary-literature translation already declared in v0.3.
+        Study-specific optimized Vmax values are not used.
+    clearance_on_unbound_concentration:
+      value: 38.61818181818182
+      unit: L/h
+      bounds: [16.33846153846154, 84.96]
+      evidence_grade: C
+      parameter_role: derived_deterministically
+      formula: aggregate_total_conversion_clearance / parent_fraction_unbound
+      provenance: >-
+        Deterministic basis conversion so LinearCES1Formation acts on unbound
+        concentration. It is not a fitted v0.4 parameter.
+  substrate_inhibition:
+    status: not_admitted
+    reason: >-
+      Vmax, Km, and Ki may not be estimated together without independent IVIVE
+      or multi-dose paired parent-metabolite development evidence.

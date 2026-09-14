@@ -1,0 +1,15 @@
+formulation:
+  formulation_id: enalapril_ir_tablet_zero_tuning_v03
+  dosage_form: immediate_release_tablet
+  initial_dissolved_fraction: 0.10
+  dissolution_rate_h: 3.1237683472861426
+  gastric_emptying_rate_h: 2.3253816193086516
+  segment_transit_rate_h: [6.0, 2.0, 1.0]
+  segment_absorption_rate_h: [16.44209506264394, 8.22104753132197, 3.0828928242457385]
+  wall_volume_fraction: [0.15, 0.55, 0.30]
+  portal_flow_fraction: [0.25, 0.50, 0.25]
+  parameter_provenance: >-
+    Prespecified cross-drug immediate-release baseline using the frozen v0.2
+    shared GI rates. No enalapril development or locked concentration was used.
+    A failed absorption-timing result must be reported; these rates may not be
+    retrospectively tuned to Dayyih2017 or VanHecken2020.

@@ -1,0 +1,16 @@
+{
+  "description": "Frozen before replacing the monolithic RHS with organ modules",
+  "drug_config": "configs/virtual_phase1/synthetic_probe.yaml",
+  "dose_mg": 100.0,
+  "duration_h": 48.0,
+  "output_interval_h": 0.25,
+  "healthy": {
+    "auc_last_mg_h_l": 6.1627133578074735,
+    "cmax_mg_l": 0.8416758606846146,
+    "tmax_h": 1.5,
+    "terminal_half_life_h": 3.1192595367431615,
+    "final_feces_parent_mg": 9.999999999999988,
+    "final_urine_parent_mg": 17.748963662121316,
+    "final_urine_metabolite_mg": 61.40988989592051
+  }
+}

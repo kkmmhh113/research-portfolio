@@ -1,0 +1,7 @@
+{
+  "status": "unverified outputs stored in the original notebook; not results from the cleaned revision",
+  "baseline_best_logged_validation_accuracy": 0.8784,
+  "baseline_logged_test_ensemble_accuracy": 0.8693,
+  "optuna_results_available": false,
+  "provenance": "Saved outputs in the original 2025 notebook; retained during 2026 review. Original checkpoints are unavailable and ensemble selection could not be verified."
+}

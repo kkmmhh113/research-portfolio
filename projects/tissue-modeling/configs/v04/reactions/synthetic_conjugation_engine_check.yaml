@@ -1,0 +1,22 @@
+synthetic_open_reaction:
+  model_status: synthetic_engine_check_not_a_drug
+  amount_unit: umol
+  conserved_moiety_id: example_parent
+  species:
+    - species_id: example_parent
+      molecular_weight_g_mol: 200.0
+      moiety_count: 1.0
+    - species_id: example_conjugate
+      molecular_weight_g_mol: 260.0
+      moiety_count: 1.0
+  external_participants:
+    - participant_id: example_transfer_group
+      coefficient: -1.0
+      molecular_weight_g_mol: 60.0
+      role: net_transfer_group
+  expected_invariants:
+    drug_moiety_umol_per_extent: 0.0
+    augmented_mass_error_mg_per_umol: 0.0
+  provenance: >-
+    Deliberately synthetic non-clinical fixture used to test a mass-gaining
+    conjugation and the dual ledger without reading or tuning any outcome.
