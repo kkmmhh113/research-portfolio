@@ -48,7 +48,7 @@ $Q_i$는 혈류량(L/h), $v_i$는 제거 속도(mg/h)입니다. 분배계수와 
 한 장 구간의 내강 약물량을 $L_i$라고 하면:
 
 $$
-v_{\mathrm{abs},i}=f\,k_{a,i}L_i,\qquad
+v_{\mathrm{abs},i}=f k_{a,i}L_i,\qquad
 v_{\mathrm{transit},i}=k_{t,i}L_i
 $$
 
@@ -79,7 +79,7 @@ $V_{\max}$는 최대 대사 속도(mg/h), $K_m$은 농도 척도(mg/L), $f_u$는
 단순화한 신장 구획은 다음과 같이 계산합니다.
 
 $$
-v_{\mathrm{renal}}=CL_{\mathrm{app}}\,s_r\,C_{\mathrm{kidney}}^{\mathrm{eq}}
+v_{\mathrm{renal}}=CL_{\mathrm{app}} s_r C_{\mathrm{kidney}}^{\mathrm{eq}}
 $$
 
 $CL_{\mathrm{app}}$는 이 농도 정의에 대한 겉보기 청소율(L/h), $s_r$은 신장 기능과 체격에 따른 보정 계수입니다. 이 식에서는 청소율에 비결합 분율을 다시 곱하지 않습니다. 코드의 `kidney_compartment`에 해당합니다. 사구체 여과와 능동 분비를 각각 분리하는 후속 구현도 있으나, 이 발췌에서는 위 식까지만 보여줍니다.

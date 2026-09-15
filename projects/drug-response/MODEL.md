@@ -31,11 +31,11 @@ flowchart TD
 한 층의 계산은 다음과 같이 쓸 수 있습니다.
 
 $$
-m_i = W_0 h_i + \sum_b W_b\,\operatorname{mean}_{j\in N_b(i)} h_j
+m_i = W_0 h_i + \sum_b W_b \mathrm{mean}_{j\in N_b(i)} h_j
 $$
 
 $$
-h_i' = \operatorname{LayerNorm}\left(h_i+f(m_i)\right)
+h_i' = \mathrm{LayerNorm}\left(h_i+f(m_i)\right)
 $$
 
 $h_i$는 원자 표현, $N_b(i)$는 결합 종류 $b$로 연결된 이웃입니다. 해당 종류의 이웃이 없으면 그 항은 0으로 둡니다. 실제 코드에서는 단일·이중·삼중·방향족 결합을 구분합니다. 여러 층을 거친 원자 표현의 평균과 최대값을 모아 분자 표현으로 바꾸고, 분자량 등 8개 기술자의 표현을 더합니다.
@@ -47,7 +47,7 @@ $h_i$는 원자 표현, $N_b(i)$는 결합 종류 $b$로 연결된 이웃입니�
 같은 분자라도 용량이 달라지면 반응이 달라질 수 있으므로, 분자 표현의 크기를 조절하는 게이트를 두었습니다.
 
 $$
-g=\sigma\left(s(P)\,[d-m(P)]\right),\qquad P_{\mathrm{eff}}=gP
+g=\sigma\left(s(P) [d-m(P)]\right),\qquad P_{\mathrm{eff}}=gP
 $$
 
 $d$는 $(\log_{10}(\text{용량 [M]})+6.5)/1.5$로 정규화한 용량입니다. 중간점 $m$은 `tanh`, 기울기 $s$는 `softplus`를 이용해 계산합니다. 로그 용량에 대한 단조 시그모이드 게이트를 적용한 설계 선택이며, 여기서 학습된 중간점을 실험으로 측정한 EC50로 해석하지는 않습니다. 최종 예측 전체의 단조성도 이 게이트만으로 보장되지 않습니다. 코드의 `dose_gate`에 해당합니다.
@@ -65,7 +65,7 @@ $$
 분자 표현과 결합된 특징에서 잠재 계수 $z$를 만들고, 유전자별 표현 $R_j$와 결합합니다. 기존 후보 코드의 핵심 부분은 다음과 같습니다.
 
 $$
-z=D_P(P_{\mathrm{eff}})+D_I(\operatorname{Fusion}(H))
+z=D_P(P_{\mathrm{eff}})+D_I(\mathrm{Fusion}(H))
 $$
 
 $$
