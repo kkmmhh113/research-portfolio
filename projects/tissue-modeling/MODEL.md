@@ -49,8 +49,6 @@ flowchart LR
 | [Open Systems Pharmacology 문서](https://docs.open-systems-pharmacology.org/working-with-pk-sim/pk-sim-documentation/pk-sim-compounds-defining-inhibition-induction-processes) | 농도에 따라 대사 속도가 달라지는 방식과 관련 변수의 의미 |
 | [PK-DB](https://academic.oup.com/nar/article/49/D1/D1358/5957165) | 모델의 예측과 비교할 사람 약동학 데이터 |
 
-문헌에서 가져온 값이 실제 측정값인지, 다른 모델에서 추정한 값인지, 현재 모델에서도 같은 의미로 사용할 수 있는지 구분해 정리하고 있습니다. Claassen 논문의 일부 대사 상수처럼 사람에게 적용하는 근거를 더 살펴봐야 하는 값도 있습니다.
-
 [핵심 코드](model_sketch.py)에는 장·간·신장에서 약물량이 달라지는 부분을 담았습니다. 지금은 모델을 더 복잡하게 만들기보다, 각 부분의 의미와 예측이 잘 맞지 않은 이유를 이해하는 데 집중하고 싶습니다.
 
 [프로젝트로 돌아가기](README.md)
