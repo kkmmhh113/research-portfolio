@@ -20,11 +20,11 @@
 
 **2026–현재 · 진행 중**
 
-분자 구조와 세포·처리 조건을 함께 사용해 유전자 발현 변화를 예측해 보는 개인 프로젝트입니다. 현재 구상한 모델 구조와 핵심 계산, 관련 자료, 진행하면서 확인한 점을 정리했습니다.
+분자 구조와 세포·처리 조건을 함께 사용해 유전자 발현 변화를 예측해 보는 개인 프로젝트입니다. 시작한 이유와 모델의 흐름, 진행하면서 알게 된 점을 정리했습니다.
 
 `Python` · `PyTorch` · `RDKit`
 
-[프로젝트 소개 →](projects/drug-response/README.md) · [모델 구조와 계산식](projects/drug-response/MODEL.md) · [핵심 코드](projects/drug-response/model_sketch.py)
+[프로젝트 소개 →](projects/drug-response/README.md) · [모델 설명](projects/drug-response/MODEL.md) · [핵심 코드](projects/drug-response/model_sketch.py)
 
 ---
 
@@ -34,11 +34,11 @@
 
 **2026–현재 · 진행 중**
 
-조직별 약물 이동과 대사·배설을 단순화한 PBPK 모델로 살펴보는 개인 프로젝트입니다. 구획을 연결한 방식과 사용한 계산식, 참고 자료, 아직 이해하고 개선해야 할 부분을 정리했습니다.
+조직별 약물 이동과 대사·배설을 단순화한 PBPK 모델로 살펴보는 개인 프로젝트입니다. 조직을 연결하는 방식과 현재 공부하고 있는 모델의 가정, 앞으로 개선하고 싶은 부분을 정리했습니다.
 
 `Python` · `NumPy` · `SciPy`
 
-[프로젝트 소개 →](projects/tissue-modeling/README.md) · [모델 구조와 계산식](projects/tissue-modeling/MODEL.md) · [핵심 코드](projects/tissue-modeling/model_sketch.py)
+[프로젝트 소개 →](projects/tissue-modeling/README.md) · [모델 설명](projects/tissue-modeling/MODEL.md) · [핵심 코드](projects/tissue-modeling/model_sketch.py)
 
 ---
 
@@ -46,9 +46,9 @@
 
 > MobileNetV2를 미세조정해 피부 병변 이미지를 7개 범주로 분류합니다.
 
-**2025 · 모델 학습 경험 · 2026년 코드 검토**
+**2025 · 모델 학습 경험 · 2026년 코드 정리**
 
-첫 딥러닝 프로젝트로 학습 설정, 체크포인트 앙상블, Optuna를 적용해 보았습니다. 모델 설계와 학습 과정, 배운 점, 현재 남아 있는 결과의 한계를 정리했습니다.
+첫 딥러닝 프로젝트로 학습 설정을 바꾸고, 체크포인트 앙상블과 Optuna를 사용해 보았습니다. 모델을 선택한 이유와 학습 과정, 배운 점, 코드를 다시 정리하며 발견한 문제를 기록했습니다.
 
 `Python` · `PyTorch` · `Torchvision` · `Optuna`
 

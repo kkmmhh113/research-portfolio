@@ -1,7 +1,7 @@
 {
-  "status": "원본 노트북에 저장된 미검증 출력이며, 정리한 수정본의 결과가 아닙니다.",
+  "status": "2025년 실행 기록입니다. 의도한 모델 조합으로 얻은 점수인지 확인하지 못했으며, 현재 코드의 재학습 결과도 아닙니다.",
   "baseline_best_logged_validation_accuracy": 0.8784,
   "baseline_logged_test_ensemble_accuracy": 0.8693,
   "optuna_results_available": false,
-  "provenance": "2025년 원본 노트북의 저장 출력을 2026년 검토에서 보존했습니다. 원본 체크포인트가 없어 앙상블 선택 방식을 검증하지 못했습니다."
+  "provenance": "2025년 학습 코드의 실행 결과를 보관했습니다. 당시 체크포인트 파일이 남아 있지 않아 실제로 어떤 모델 조합이 사용됐는지는 다시 확인하지 못했습니다."
 }
