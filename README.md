@@ -16,15 +16,15 @@
 
 ### 01. 분자 구조 기반 약물 반응 예측
 
-> 분자 구조와 약물 처리 조건을 이용해 유전자 발현 변화를 예측합니다.
+> 분자 구조와 약물 처리 조건으로 유전자 발현 변화를 예측하는 방법을 살펴봅니다.
 
 **2026–현재 · 진행 중**
 
-공개 SciPlex3 데이터를 이용해 학습에 포함되지 않은 화합물의 반응을 예측하는 프로젝트입니다. 연구 주제와 주요 과거 실험 결과, 데이터와 모델을 평가하는 과정에서 확인한 한계를 정리했습니다.
+분자 구조와 세포·처리 조건을 함께 사용해 유전자 발현 변화를 예측해 보는 개인 프로젝트입니다. 현재 구상한 모델 구조와 핵심 계산, 관련 자료, 진행하면서 확인한 점을 정리했습니다.
 
 `Python` · `PyTorch` · `RDKit`
 
-[프로젝트 소개 →](projects/drug-response/README.md) · [소스 코드](projects/drug-response/src/my_star/) · [코드 안내](projects/drug-response/CODE.md)
+[프로젝트 소개 →](projects/drug-response/README.md) · [모델 구조와 계산식](projects/drug-response/MODEL.md) · [핵심 코드](projects/drug-response/model_sketch.py)
 
 ---
 
@@ -34,11 +34,11 @@
 
 **2026–현재 · 진행 중**
 
-생리학 기반 약동학(PBPK) 모델의 농도–시간 예측을 공개된 사람 약동학 데이터와 비교하는 프로젝트입니다. 현재는 모델의 수치적 일관성, 예측 오차, 매개변수 해석의 한계를 살펴보고 있습니다.
+조직별 약물 이동과 대사·배설을 단순화한 PBPK 모델로 살펴보는 개인 프로젝트입니다. 구획을 연결한 방식과 사용한 계산식, 참고 자료, 아직 이해하고 개선해야 할 부분을 정리했습니다.
 
 `Python` · `NumPy` · `SciPy`
 
-[프로젝트 소개 →](projects/tissue-modeling/README.md) · [소스 코드](projects/tissue-modeling/src/our_star/) · [코드 안내](projects/tissue-modeling/CODE.md)
+[프로젝트 소개 →](projects/tissue-modeling/README.md) · [모델 구조와 계산식](projects/tissue-modeling/MODEL.md) · [핵심 코드](projects/tissue-modeling/model_sketch.py)
 
 ---
 
