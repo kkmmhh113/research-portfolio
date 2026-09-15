@@ -1,53 +1,53 @@
-# Molecular Structure-Based Drug Response Prediction
+# 분자 구조 기반 약물 반응 예측
 
-**2026–present · Independent project · Research planning**
+**2026–현재 · 개인 프로젝트 · 연구 기획**
 
-[Model code](src/my_star/model.py) · [Training code](scripts/train_sciplex.py) · [Tests](tests/) · [Code guide](CODE.md)
+[모델 코드](src/my_star/model.py) · [학습 코드](scripts/train_sciplex.py) · [테스트](tests/) · [코드 안내](CODE.md)
 
-## Research topic
+## 연구 주제
 
-This project explores whether molecular structure can help predict the response to compounds not observed during training. My initial interest was in broader biological effects; after reviewing early performance and available data, I narrowed the work to drug-induced gene-expression changes in A549, K562, and MCF7 cells using public SciPlex3 data.
+분자 구조를 이용해 학습에 포함되지 않은 화합물의 반응을 예측할 수 있는지 탐색하는 프로젝트입니다. 처음에는 화합물의 다양한 생물학적 효과에 관심을 두었으나, 초기 성능과 활용 가능한 데이터를 검토하면서 약물에 의한 유전자 발현 변화로 범위를 좁혔습니다. 공개 SciPlex3 데이터의 A549, K562, MCF7 세포주를 사용합니다.
 
-## Approach and my role
+## 접근 방법과 맡은 역할
 
-I proposed molecular structure as an input, chose the gene-expression focus, and selected the three cell lines supported by the data.
+분자 구조를 입력으로 사용하는 방향을 제안하고, 예측 대상을 유전자 발현 변화로 정했으며, 데이터에서 지원하는 세 세포주를 선택했습니다.
 
-The historical model combines molecular fingerprints and descriptors with cell, dose, time, and baseline-expression information. It predicts changes relative to controls. All conditions for one compound stay in the same split, with chemical scaffold groups separated across training, validation, and evaluation.
+과거 실험 모델은 분자 지문과 분자 기술자에 세포주, 용량, 처리 시간, 기저 발현 정보를 결합해 대조군 대비 변화를 예측합니다. 같은 화합물의 모든 조건은 하나의 데이터 분할에 함께 배치하고, 학습·검증·평가 사이에서 화학적 골격(scaffold) 그룹이 겹치지 않도록 나누었습니다.
 
-## Selected historical results
+## 주요 과거 실험 결과
 
-The Phase 4 benchmark used 186 compounds and 2,396 conditions. Its outer evaluation covered 28 compounds and 359 conditions on 978 historical response coordinates.
+Phase 4 벤치마크에는 화합물 186개와 처리 조건 2,396개를 사용했습니다. 별도로 분리한 최종 평가 세트에는 화합물 28개와 조건 359개가 포함되었으며, 당시의 반응 벡터 978개 좌표를 평가했습니다.
 
-**These results use scPerturb v1.3, with subsequently identified gene-annotation and chemical structure-mapping problems. They are not final results for a corrected dataset.**
+**아래 수치는 이후 유전자 주석과 화학 구조 매핑 문제가 확인된 scPerturb v1.3의 결과입니다. 데이터를 수정한 뒤 얻은 최종 결과가 아닙니다.**
 
-| Model | Mean Pearson ↑ | RMSE ↓ | MAE ↓ |
+| 모델 | 평균 Pearson 상관계수 ↑ | RMSE ↓ | MAE ↓ |
 | --- | ---: | ---: | ---: |
-| Training-mean baseline | 0.1708 | 0.1478 | 0.0869 |
-| Context-mean baseline | 0.2992 | 0.1435 | 0.0848 |
-| Molecular-structure ensemble | **0.4326** | **0.1341** | **0.0796** |
+| 학습 데이터 평균 기준 모델 | 0.1708 | 0.1478 | 0.0869 |
+| 처리 맥락별 평균 기준 모델 | 0.2992 | 0.1435 | 0.0848 |
+| 분자 구조 기반 앙상블 | **0.4326** | **0.1341** | **0.0796** |
 
-Mean Pearson measures response-pattern agreement averaged over treatment conditions, not classification accuracy. The saved gain over the context baseline was **0.1335**, with a historical compound-block bootstrap 95% interval of **0.0946–0.1720**. This interval does not account for the later data-quality findings.
+평균 Pearson 상관계수는 각 처리 조건에서 반응 패턴이 얼마나 일치하는지를 계산해 평균한 값이며, 분류 정확도가 아닙니다. 처리 맥락 기준 모델 대비 개선 폭은 **0.1335**였고, 당시 화합물 단위 블록 부트스트랩으로 구한 95% 구간은 **0.0946–0.1720**이었습니다. 이 구간에는 이후 확인한 데이터 품질 문제가 반영되어 있지 않습니다.
 
-## Findings and limitations
+## 확인한 점과 한계
 
-- **The aggregate improvement was not uniform.** In 29 observations at 72 hours, Pearson was 0.3891 for the model versus 0.4004 for the context baseline.
-- **Additional supervision did not consistently help.** Target-label and repeated-target/mechanism experiments failed their development selection gates; neither proceeded to outer evaluation.
-- **Later scores are not independent confirmation.** Phase 6 recorded Pearson 0.4674, but reused the evaluated outer set and changed the training setup and output panel.
-- **The data need reconstruction.** The annotation and structure-mapping findings prevent named-gene biological interpretation of historical scores. A separately reviewed v1.4 dataset and evaluation protocol remain necessary.
+- **전체 평균의 개선이 모든 조건에서 나타나지는 않았습니다.** 72시간 조건의 관측치 29개에서는 모델의 Pearson 상관계수가 0.3891로, 처리 맥락 기준 모델의 0.4004보다 낮았습니다.
+- **보조 학습 정보가 일관된 개선으로 이어지지는 않았습니다.** 표적 라벨과 반복 표적·작용기전 정보를 추가한 실험은 개발 단계의 선정 기준을 통과하지 못해 최종 평가로 진행하지 않았습니다.
+- **후속 점수는 독립적인 검증 결과가 아닙니다.** Phase 6에서 Pearson 상관계수 0.4674를 기록했지만, 이미 평가한 최종 평가 세트를 재사용했고 학습 설정과 출력 항목도 변경했습니다.
+- **데이터를 다시 구성해야 합니다.** 유전자 주석과 구조 매핑 문제로 인해 과거 점수를 특정 유전자에 대한 생물학적 결론으로 해석할 수 없습니다. 별도로 검토한 v1.4 데이터셋과 평가 절차가 필요합니다.
 
-These results concern three cancer cell lines. They do not establish patient-level drug effects, clinical outcomes, or superiority over published methods.
+이 결과는 세 가지 암세포주에 관한 것입니다. 환자 수준의 약물 효과나 임상 결과를 입증하지 않으며, 기존에 발표된 방법보다 우수하다는 결론도 내리지 않았습니다.
 
-## Next steps
+## 다음 단계
 
-The priority is to resolve the response definition, structure mapping, preprocessing, and evaluation contracts before interpreting further model changes. Additional biological information and model complexity need controlled comparisons.
+추가적인 모델 변경을 해석하기에 앞서 반응의 정의, 구조 매핑, 전처리, 평가 기준을 명확히 정리하는 것이 우선입니다. 생물학적 정보를 추가하거나 모델을 복잡하게 만드는 시도는 다른 조건을 통제한 비교를 통해 살펴볼 계획입니다.
 
 <details>
-<summary>Detailed experiments and code coverage</summary>
+<summary>상세 실험 기록과 공개 코드 범위</summary>
 
-The [evaluation record](docs/evaluation.md) contains the complete narrative, auxiliary comparisons, and interpretation limits. The [saved result extract](results/reviewed_results.json) contains full-precision metrics and source hashes.
+[상세 평가 기록](docs/evaluation.md)에 전체 설명과 보조 실험 비교, 해석상의 한계를 정리했습니다. [저장된 결과](results/reviewed_results.json)에는 반올림하지 않은 지표와 원본 파일의 해시값이 들어 있습니다.
 
-The source package includes the historical structure-conditioned and P/C/R models, training and inference code, split utilities, metric functions, and tests. The v1.4 helper modules are development utilities, not a completed corrected dataset pipeline. Raw expression data, checkpoints, remote experiment launchers, and manuscript tooling are excluded. The published tests use small fixtures and do not reproduce the benchmark scores. See the [code guide](CODE.md).
+공개 코드에는 과거의 구조 조건부 모델과 P/C/R 모델, 학습·추론 코드, 데이터 분할 도구, 평가 지표 함수, 테스트가 포함되어 있습니다. v1.4 보조 모듈은 개발 중인 도구이며, 수정된 데이터셋을 만드는 전체 과정이 완성되었다는 뜻은 아닙니다. 원본 발현 데이터, 체크포인트, 원격 실험 실행 도구, 논문 작성 도구는 제외했습니다. 공개 테스트는 작은 예제 데이터를 사용하며 벤치마크 점수를 재현하지는 않습니다. 자세한 내용은 [코드 안내](CODE.md)를 참고해 주세요.
 
 </details>
 
-[Back to portfolio](../../README.md)
+[포트폴리오로 돌아가기](../../README.md)

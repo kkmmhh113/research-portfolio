@@ -1,14 +1,14 @@
 {
   "review_date": "2026-09-14",
-  "review_type": "Extraction of saved aggregate results; no training, inference, or test rescoring.",
+  "review_type": "저장된 집계 결과를 추출했습니다. 학습, 추론, 테스트 재평가는 수행하지 않았습니다.",
   "limitations": [
-    "Historical scPerturb v1.3 numeric response coordinates; gene labels are not validated.",
-    "Historical chemical structure mismappings were found; a reviewed v1.4 rebuild is pending.",
-    "Phase 6 reuses the previously evaluated outer set and is not independent confirmation.",
-    "Historical metrics average conditions, not equally weighted compounds."
+    "과거 scPerturb v1.3의 수치 반응 좌표입니다. 유전자 라벨은 검증되지 않았습니다.",
+    "과거 화학 구조 매핑에서 오류가 발견되었습니다. 검토를 거친 v1.4 데이터 재구성은 아직 필요합니다.",
+    "Phase 6은 이미 평가한 최종 평가 세트를 재사용했으므로 독립적인 확인 결과가 아닙니다.",
+    "과거 지표는 조건별 평균이며, 화합물마다 동일한 가중치를 부여한 평균이 아닙니다."
   ],
   "phase4": {
-    "evidence_role": "historical first-use outer evaluation",
+    "evidence_role": "당시 처음 사용한 최종 평가 세트의 결과",
     "compounds": 28,
     "observations": 359,
     "response_coordinates": 978,
@@ -113,7 +113,7 @@
   },
   "auxiliary_development_experiments": [
     {
-      "experiment": "train-only molecular-target auxiliary supervision",
+      "experiment": "학습 데이터에만 적용한 분자 표적 보조 학습",
       "status": "stopped_at_fold0_gate",
       "selection_fold": 0,
       "locked_outer_test_evaluated": false,
@@ -127,7 +127,7 @@
       }
     },
     {
-      "experiment": "train-only repeated target and MoA auxiliary supervision",
+      "experiment": "학습 데이터에만 적용한 반복 표적·작용기전 보조 학습",
       "status": "stopped_at_fold0_gate",
       "selection_fold": 0,
       "locked_outer_test_evaluated": false,

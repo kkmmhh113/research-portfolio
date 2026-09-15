@@ -1,52 +1,52 @@
-# Tissue-Based Modeling toward a Human Digital Twin
+# 인체 디지털 트윈을 위한 조직 기반 모델링
 
-**2026–present · Independent project · Project concept**
+**2026–현재 · 개인 프로젝트 · 프로젝트 구상**
 
-My long-term interest is to connect tissue-specific models and multiple types of biological data into a human digital twin. The current project starts with a narrower question: how can a compartment-based model describe drug movement and elimination across tissues?
+장기적으로는 조직별 모델과 여러 종류의 생물학적 데이터를 연결해 인체 디지털 트윈을 구성하는 데 관심이 있습니다. 현재 프로젝트는 구획 기반 모델로 조직 사이의 약물 이동과 제거를 표현하는 것부터 시작했습니다.
 
-## Current approach
+## 현재 접근 방법
 
-The project uses physiologically based pharmacokinetic (PBPK) modeling to represent drug amounts and concentration–time profiles. This is a starting point for tissue modeling, rather than a completed human digital twin.
+생리학 기반 약동학(PBPK) 모델링으로 약물량과 농도–시간 곡선을 표현합니다. 완성된 인체 디지털 트윈을 구현한 단계는 아니며, 조직 모델링을 위한 출발점입니다.
 
-The current work examines a reduced multi-compartment model against published human pharmacokinetic data and simpler compartmental models. A central evaluation question is whether numerical consistency also leads to accurate concentration predictions.
+현재는 단순화한 다중 구획 모델을 공개된 사람 약동학 데이터 및 더 단순한 구획 모델과 비교합니다. 모델의 수치적 일관성이 정확한 농도 예측으로도 이어지는지를 주요 평가 주제로 삼았습니다.
 
-## My role
+## 맡은 역할
 
-I proposed the tissue-integration direction. I am continuing to study the model mechanisms and clarify which assumptions and comparisons are appropriate for its current implementation.
+조직별 모델을 통합하는 방향을 제안했습니다. 모델의 기전을 공부하면서, 현재 구현에 적절한 가정과 비교 방법을 명확히 정리하고 있습니다.
 
-## Selected historical evaluation results
+## 주요 과거 평가 결과
 
-The saved v0.3 evaluation compared concentration–time predictions with published human pharmacokinetic observations from three studies. Caffeine and paracetamol used the segmented gastrointestinal model lineage; enalapril and its metabolite enalaprilat used a parent–metabolite model. These are four measured analytes across three studies, rather than four independent studies of one identical model.
+저장된 v0.3 평가에서는 농도–시간 예측값을 연구 3건의 공개된 사람 약동학 관측값과 비교했습니다. 카페인과 파라세타몰에는 위장관을 구간별로 나눈 모델 계열을, 에날라프릴과 대사체 에날라프릴라트에는 모약물–대사체 모델을 사용했습니다. 따라서 연구 3건에서 측정한 물질 4종에 대한 비교이며, 동일한 모델을 네 개의 독립 연구에서 평가한 결과가 아닙니다.
 
-| Analyte | Study | AAFE ↓ | Predictions within twofold of observations ↑ | Historical p05–p95 envelope coverage |
+| 분석 대상 물질 | 연구 식별자 | AAFE ↓ | 관측값 대비 2배 이내 예측 비율 ↑ | 과거 p05–p95 범위의 관측값 포함률 |
 | --- | --- | ---: | ---: | ---: |
-| Caffeine | PKDB00019 | **1.348** | 90.9% | 54.5% |
-| Paracetamol | PKDB00021 | **1.389** | 88.9% | 66.7% |
-| Enalapril | PKDB00805 | 3.137 | 33.3% | 5.9% |
-| Enalaprilat | PKDB00805 | 12.229 | 14.3% | 6.3% |
+| 카페인 | PKDB00019 | **1.348** | 90.9% | 54.5% |
+| 파라세타몰 | PKDB00021 | **1.389** | 88.9% | 66.7% |
+| 에날라프릴 | PKDB00805 | 3.137 | 33.3% | 5.9% |
+| 에날라프릴라트 | PKDB00805 | 12.229 | 14.3% | 6.3% |
 
-AAFE summarizes absolute fold error, with 1 indicating exact agreement. Twofold agreement uses positive observations eligible for the logarithmic comparison; coverage uses the available observation points, so the denominators can differ. Enalaprilat was measured after enalapril administration.
+AAFE는 절대 평균 배수 오차이며, 1이면 예측과 관측이 정확히 일치합니다. 2배 이내 예측 비율은 로그 비교가 가능한 양의 관측값을 대상으로 계산하고, 구간 포함률은 사용 가능한 관측 시점을 대상으로 계산하므로 분모가 다를 수 있습니다. 에날라프릴라트는 에날라프릴 투여 후 측정한 대사체입니다.
 
-Caffeine and paracetamol met the historical point-prediction criteria, including AAFE ≤ 2 and at least 80% of eligible predictions within twofold. Both failed the historical coverage threshold of 70%. Enalapril and enalaprilat failed multiple point-prediction criteria as well as coverage.
+카페인과 파라세타몰은 AAFE ≤ 2, 비교 가능한 예측의 80% 이상이 관측값의 2배 이내라는 조건을 포함해 당시의 점 예측 기준을 충족했습니다. 그러나 두 물질 모두 당시 구간 포함률 기준인 70%에는 미치지 못했습니다. 에날라프릴과 에날라프릴라트는 구간 포함률뿐 아니라 여러 점 예측 기준도 충족하지 못했습니다.
 
-**The coverage column is a historical diagnostic, not a calibrated confidence-interval result:** it compares published cohort means with the p05–p95 range of simulated individuals. Those quantities do not represent the same statistical target. Enalapril and enalaprilat also involved a serum-to-modeled-plasma comparison without conversion.
+**구간 포함률은 과거의 진단 지표이며, 적절히 보정된 신뢰구간의 결과가 아닙니다.** 공개된 집단 평균을 시뮬레이션한 개인들의 p05–p95 범위와 비교했기 때문에 동일한 통계적 대상을 비교한 것이 아닙니다. 에날라프릴과 에날라프릴라트에서는 혈청 관측값과 모델의 혈장 예측값을 변환 없이 비교한 한계도 있습니다.
 
-## What the evaluations revealed
+## 평가에서 확인한 점
 
-**Numerical consistency and prediction accuracy need separate checks.** The maximum recorded mass-balance error across these evaluations was **4.35 × 10⁻⁸ mg**, within the project's numerical tolerance, even though some concentration predictions were poor. Mass conservation verifies the model's accounting; it does not establish biological accuracy.
+**수치적 일관성과 예측 정확도는 별도로 확인해야 합니다.** 일부 농도 예측이 부정확했음에도 이 평가들에서 기록한 최대 질량수지 오차는 **4.35 × 10⁻⁸ mg**로, 프로젝트의 수치 허용 범위 안에 있었습니다. 질량 보존은 모델의 물질량 계산이 일관되는지 확인하지만 생물학적 정확도를 입증하지는 않습니다.
 
-**The available curves did not uniquely determine all parameters.** The caffeine sensitivity analysis examined 19 parameter directions against 11 output dimensions. Its effective rank was 10, below the output-limited maximum of 11, and three parameter profiles reached their search boundaries. These results limit how confidently fitted parameters can be interpreted.
+**현재의 곡선만으로 모든 매개변수를 유일하게 결정할 수는 없었습니다.** 카페인 민감도 분석에서는 매개변수 방향 19개를 출력 차원 11개에 대해 조사했습니다. 유효 랭크는 10으로 출력 차원에 따른 최대값 11보다 작았으며, 매개변수 프로파일 3개가 탐색 경계에 도달했습니다. 이 결과는 곡선에 맞춘 매개변수 값을 확신 있게 해석하는 데 한계가 있음을 보여줍니다.
 
-**Adding a mechanism did not automatically improve the fit.** In a separate midazolam development comparison, adding intestinal CYP3A increased parent-drug AAFE from **1.421 to 5.980**. This was a development-stage comparison with its existing fitting choices, not an independent test or a general conclusion about that mechanism.
+**기전을 추가한다고 예측이 자동으로 개선되지는 않았습니다.** 별도의 미다졸람 개발 비교에서 장내 CYP3A를 추가하자 모약물의 AAFE가 **1.421에서 5.980으로** 커졌습니다. 해당 매개변수 적합 설정에서 수행한 개발 단계의 비교이며, 독립 테스트나 그 기전에 대한 일반적인 결론이 아닙니다.
 
-## Current interpretation and next questions
+## 현재 해석과 다음 검토 사항
 
-The historical evaluation was internally frozen, with a disclosed schema/design amendment after the data files were materialized and before scoring. It was not an independently registered prospective validation. The tables preserve those results and failures; they do not establish clinical readiness.
+과거 평가 기준은 내부적으로 확정했으나, 데이터 파일을 준비한 뒤 점수를 계산하기 전에 데이터 구조와 설계를 수정한 이력이 있습니다. 이 변경 이력을 공개했으며, 독립적으로 사전 등록한 전향적 검증으로 설명하지 않습니다. 표에는 당시의 결과와 충족하지 못한 기준을 그대로 남겼으며, 임상 적용 가능성을 입증한 결과로 보지 않습니다.
 
-Before extending the tissue model, I want to understand which parameters the data support, compare added mechanisms with simpler models, and match uncertainty estimates to the observed quantity. Human pharmacokinetic data are the current evaluation source. Using preclinical data to predict clinical outcomes remains a broader research interest.
+조직 모델을 확장하기 전에 데이터로 추정할 수 있는 매개변수가 무엇인지 이해하고, 추가한 기전을 더 단순한 모델과 비교하며, 불확실성 추정의 대상을 실제 관측량과 맞추고자 합니다. 현재 평가에는 사람 약동학 데이터를 사용합니다. 전임상 데이터를 활용한 임상 결과 예측은 더 넓은 연구 관심 분야입니다.
 
-## Result record
+## 결과 기록
 
-The [reviewed result extract](../results/reviewed_results.json) includes full-precision metrics, historical failed criteria, the identifiability and midazolam results, and source-file hashes. This review used saved reports without new fitting, simulation, or access to clinical observation tables. The source-report hashes matched those recorded in the existing figure data. The source package is described in [CODE.md](../CODE.md); raw clinical data are not distributed here.
+[검토한 결과 파일](../results/reviewed_results.json)에 반올림하지 않은 지표, 당시 충족하지 못한 기준, 식별 가능성 분석과 미다졸람 결과, 원본 파일의 해시값을 포함했습니다. 이번 검토에서는 새 매개변수 적합이나 시뮬레이션, 임상 관측 테이블 접근 없이 저장된 보고서를 사용했습니다. 원본 보고서의 해시값은 기존 그림 데이터에 기록된 값과 일치했습니다. 공개 소스의 범위는 [코드 안내](../CODE.md)에 정리했으며, 원본 임상 데이터는 배포하지 않습니다.
 
-[Back to portfolio](../../../README.md)
+[포트폴리오로 돌아가기](../../../README.md)

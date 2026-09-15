@@ -1,57 +1,57 @@
-# Tissue-Based Modeling toward a Human Digital Twin
+# 인체 디지털 트윈을 위한 조직 기반 모델링
 
-**2026–present · Independent project · Ongoing**
+**2026–현재 · 개인 프로젝트 · 진행 중**
 
-[Model code](src/our_star/models/) · [Tests](tests/) · [Code guide](CODE.md) · [Detailed evaluation](docs/evaluation.md)
+[모델 코드](src/our_star/models/) · [테스트](tests/) · [코드 안내](CODE.md) · [상세 평가](docs/evaluation.md)
 
-## Research topic
+## 연구 주제
 
-I started this project with an interest in connecting tissue-specific models and different types of biological data into a human digital twin. The current work focuses on drug movement and elimination, comparing a simplified model of several organs with human pharmacokinetic observations.
+조직별 모델과 다양한 생물학적 데이터를 연결해 인체 디지털 트윈을 구성하는 데 관심을 가지고 시작한 프로젝트입니다. 현재는 약물의 이동과 제거 과정에 초점을 맞춰, 여러 장기를 단순화한 모델을 사람 약동학 관측값과 비교하고 있습니다.
 
-The central topic is the relationship between a model's numerical consistency and its ability to predict measured drug concentrations.
+모델의 수치적 일관성과 실제 약물 농도를 예측하는 능력이 어떤 관계를 갖는지 살펴보는 것이 핵심 주제입니다.
 
-## Current work and my role
+## 현재 접근 방법과 맡은 역할
 
-The project uses physiologically based pharmacokinetic (PBPK) models to represent drug movement through the gastrointestinal tract, circulation, liver, kidneys, and other tissues. It compares concentration–time predictions with published human data and simpler compartmental models.
+생리학 기반 약동학(PBPK) 모델로 위장관, 혈액 순환, 간, 신장, 기타 조직 사이의 약물 이동을 표현합니다. 모델이 예측한 농도–시간 곡선을 공개된 사람 데이터 및 더 단순한 구획 모델과 비교합니다.
 
-I proposed the tissue-integration direction. I am studying the model mechanisms and assumptions to understand the evaluation results and their limitations.
+조직별 모델을 통합하는 방향을 제안했습니다. 현재는 평가 결과와 한계를 이해하기 위해 모델의 기전과 가정을 공부하고 있습니다.
 
-## Selected results
+## 주요 결과
 
-The historical v0.3 evaluation compared predictions with four analytes measured across three studies.
+과거 v0.3 평가에서는 연구 3건에서 측정한 분석 대상 물질 4종과 예측값을 비교했습니다.
 
-| Analyte | Absolute average fold error, AAFE ↓ |
+| 분석 대상 물질 | 절대 평균 배수 오차(AAFE) ↓ |
 | --- | ---: |
-| Caffeine | 1.348 |
-| Paracetamol | 1.389 |
-| Enalapril | 3.137 |
-| Enalaprilat | 12.229 |
+| 카페인 | 1.348 |
+| 파라세타몰 | 1.389 |
+| 에날라프릴 | 3.137 |
+| 에날라프릴라트 | 12.229 |
 
-AAFE measures absolute fold error; **values closer to 1 indicate better agreement**. Errors were relatively small for caffeine and paracetamol, but larger for enalapril and its metabolite enalaprilat.
+AAFE는 절대 배수 오차를 나타내며, **1에 가까울수록 예측과 관측이 잘 일치합니다.** 카페인과 파라세타몰의 오차는 상대적으로 작았지만, 에날라프릴과 그 대사체인 에날라프릴라트에서는 오차가 컸습니다.
 
-Model configurations differed by compound, so these are not four independent validations of one identical model. Caffeine and paracetamol also failed to meet all of the historical evaluation criteria.
+화합물마다 모델 구성이 달랐으므로, 동일한 모델을 네 번 독립적으로 검증한 결과는 아닙니다. 카페인과 파라세타몰도 당시의 모든 평가 기준을 충족하지는 못했습니다.
 
-## Findings and limitations
+## 확인한 점과 한계
 
-- **Numerical consistency and predictive accuracy required separate checks.** Mass-balance errors stayed within the numerical tolerance even when concentration predictions differed substantially from observations.
-- **Some parameters could not be uniquely determined from the available curves.** A parameter value that fits a curve is not necessarily a reliable estimate of the underlying physiology.
-- **Adding a mechanism did not always improve prediction.** In a separate midazolam development experiment, adding intestinal CYP3A increased parent-drug AAFE from 1.421 to 5.980. This reflects the settings of that experiment, not a general conclusion that the mechanism is unnecessary.
+- **수치적 일관성과 예측 정확도는 별도로 확인해야 했습니다.** 농도 예측이 관측값과 크게 달라지는 경우에도 질량수지 오차는 수치 허용 범위 안에 있었습니다.
+- **일부 매개변수는 현재의 곡선만으로 유일하게 결정할 수 없었습니다.** 곡선에 잘 맞는 매개변수 값이 실제 생리학적 특성을 신뢰성 있게 추정한 값이라고 볼 수는 없습니다.
+- **기전을 추가해도 예측이 항상 좋아지지는 않았습니다.** 별도의 미다졸람 개발 실험에서 장내 CYP3A를 추가하자 모약물의 AAFE가 1.421에서 5.980으로 커졌습니다. 해당 실험 설정에서의 결과이며, 그 기전이 불필요하다는 일반적 결론은 아닙니다.
 
-The historical coverage calculation compared observed cohort means with simulated individual distributions, so it does not establish calibrated uncertainty. Some comparisons also used serum observations against modeled plasma without conversion. These are historical research results, not independently preregistered prospective validation or evidence of clinical readiness.
+과거 구간 포함률 계산에서는 관측된 집단 평균과 시뮬레이션한 개인별 분포를 비교했으므로, 불확실성이 적절히 보정되었다는 근거로 볼 수 없습니다. 일부 비교에서는 혈청 관측값과 모델의 혈장 예측값 사이의 변환도 적용하지 않았습니다. 따라서 이 결과는 과거 연구 기록이며, 독립적으로 사전 등록한 전향적 검증이나 임상 적용 가능성을 입증한 결과가 아닙니다.
 
-## Next steps
+## 다음 단계
 
-I aim to clarify the main parameters and assumptions, investigate prediction failures, and compare extensions with simpler models. Evaluation also needs to match predictions and observations by analyte, measurement conditions, and statistical target.
+주요 매개변수와 가정을 명확히 정리하고, 예측이 잘 맞지 않은 원인을 살펴보며, 확장한 모델을 더 단순한 모델과 비교할 계획입니다. 평가할 때는 예측과 관측의 대상 물질, 측정 조건, 통계적 대상을 일치시키는 작업도 필요합니다.
 
-Human digital twins and using preclinical data to predict clinical outcomes remain long-term interests. The current focus is understanding and evaluating the reduced pharmacokinetic model.
+인체 디지털 트윈과 전임상 데이터를 이용한 임상 결과 예측은 장기적인 관심 분야입니다. 현재는 단순화한 약동학 모델을 이해하고 평가하는 데 집중하고 있습니다.
 
 <details>
-<summary>Detailed results and code coverage</summary>
+<summary>상세 결과와 공개 코드 범위</summary>
 
-The [evaluation record](docs/evaluation.md) preserves the full metric table, failed criteria, identifiability results, and evaluation-history qualifications. [Saved aggregate results](results/reviewed_results.json) retain full-precision values and source hashes.
+[상세 평가 기록](docs/evaluation.md)에 전체 지표 표, 충족하지 못한 기준, 매개변수 식별 가능성, 평가 이력을 해석할 때의 주의점을 정리했습니다. [저장된 집계 결과](results/reviewed_results.json)에는 반올림하지 않은 값과 원본 파일의 해시값을 남겼습니다.
 
-The source package includes numerical models, population sampling, prediction and analysis utilities, example configurations, and tests. It excludes private orchestration, unpublished manuscript tooling, and raw clinical datasets. The included synthetic example demonstrates the solver; it does not reproduce the human-data results above. See the [code guide](CODE.md).
+공개 코드에는 수치 모델, 가상 인구집단 표본 추출, 예측·분석 도구, 예제 설정, 테스트가 포함됩니다. 비공개 작업 자동화 도구, 미공개 논문 작성 도구, 원본 임상 데이터셋은 제외했습니다. 포함된 합성 예제는 수치해석기의 동작을 보여주며, 위의 사람 데이터 평가 결과를 재현하지는 않습니다. 자세한 내용은 [코드 안내](CODE.md)를 참고해 주세요.
 
 </details>
 
-[Back to portfolio](../../README.md)
+[포트폴리오로 돌아가기](../../README.md)

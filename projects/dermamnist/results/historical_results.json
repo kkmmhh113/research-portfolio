@@ -1,7 +1,7 @@
 {
-  "status": "unverified outputs stored in the original notebook; not results from the cleaned revision",
+  "status": "원본 노트북에 저장된 미검증 출력이며, 정리한 수정본의 결과가 아닙니다.",
   "baseline_best_logged_validation_accuracy": 0.8784,
   "baseline_logged_test_ensemble_accuracy": 0.8693,
   "optuna_results_available": false,
-  "provenance": "Saved outputs in the original 2025 notebook; retained during 2026 review. Original checkpoints are unavailable and ensemble selection could not be verified."
+  "provenance": "2025년 원본 노트북의 저장 출력을 2026년 검토에서 보존했습니다. 원본 체크포인트가 없어 앙상블 선택 방식을 검증하지 못했습니다."
 }

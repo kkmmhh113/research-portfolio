@@ -1,11 +1,11 @@
 {
   "review_date": "2026-09-14",
-  "review_type": "Extraction of saved aggregate results; no fitting, simulation, new clinical data access, or rescoring.",
+  "review_type": "저장된 집계 결과를 추출했습니다. 매개변수 적합, 시뮬레이션, 새로운 임상 데이터 접근, 재평가는 수행하지 않았습니다.",
   "limitations": [
-    "Historical internally frozen evaluation; schema/design amendment after data materialization and before scoring; no independent public preregistration.",
-    "Coverage compares cohort means against simulated individual p05-p95 ranges; not calibrated coverage for matched statistical quantities.",
-    "Enalapril/enalaprilat serum observations were compared with modeled plasma without conversion.",
-    "Midazolam is development evidence, not external validation."
+    "과거 내부적으로 확정한 평가입니다. 데이터 파일 준비 후 점수 계산 전에 데이터 구조와 설계를 수정했으며, 독립적인 공개 사전 등록은 없습니다.",
+    "구간 포함률은 집단 평균과 시뮬레이션한 개인들의 p05-p95 범위를 비교한 값입니다. 동일한 통계적 대상에 대해 보정된 포함률이 아닙니다.",
+    "에날라프릴·에날라프릴라트의 혈청 관측값을 변환 없이 모델의 혈장 예측값과 비교했습니다.",
+    "미다졸람 결과는 개발 단계의 근거이며 외부 검증이 아닙니다."
   ],
   "v03": {
     "evaluation_integrity": "base_frozen_before_access_schema_design_amendment_after_materialization_but_before_scoring",

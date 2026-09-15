@@ -1,24 +1,24 @@
-# Notebook revision notes
+# 노트북 코드 변경 기록
 
-The notebooks are a 2026 revision of a 2025 training project. The original files are retained privately; the notebook code in this repository matches the previously reviewed revision.
+노트북은 2025년 학습 프로젝트를 2026년에 정리한 수정본입니다. 원본 파일은 별도로 보관하고 있으며, 이 저장소의 코드는 앞서 검토한 수정본과 같습니다.
 
-## Changes
+## 변경 사항
 
-- Save checkpoints under unique epoch filenames and track the selected files explicitly. The original fixed-parameter notebook could overwrite a ranked file without preserving the previous ranking.
-- Name the ensemble aggregation as mean logits. A checkpoint selected by both accuracy and loss retains two votes, preserving the original weighting rule.
-- Use a separate directory for each run to avoid mixing checkpoints from different experiments.
-- Replace hard-coded CUDA calls with device-based tensor placement.
-- Select ImageNet V1 weights explicitly, matching the original pretrained API.
-- Calculate class weights from training labels and save configuration, selection, and metric records.
-- Separate test evaluation from training and validation.
-- Split long notebook cells by stage and clear old outputs from the revised notebooks.
+- 에포크별로 고유한 파일명으로 체크포인트를 저장하고, 선택한 파일을 명시적으로 추적하도록 했습니다. 원래 고정 설정 노트북은 이전 순위를 보존하지 못한 채 순위별 파일을 덮어쓸 수 있었습니다.
+- 앙상블 결합 방식이 로짓 평균임을 명확히 표시했습니다. 정확도와 손실 양쪽에서 선택된 체크포인트에는 두 표를 부여하는 기존 가중 규칙을 유지했습니다.
+- 서로 다른 실험의 체크포인트가 섞이지 않도록 실행마다 별도 폴더를 사용했습니다.
+- CUDA를 직접 지정하던 호출을 선택된 장치에 따라 텐서를 배치하는 방식으로 바꿨습니다.
+- 기존 사전 학습 API와 일치하도록 ImageNet V1 가중치를 명시적으로 선택했습니다.
+- 학습 라벨에서 클래스 가중치를 계산하고, 설정·체크포인트 선택·평가 지표를 기록하도록 했습니다.
+- 테스트 평가를 학습 및 검증 과정과 분리했습니다.
+- 긴 노트북 셀을 단계별로 나누고 수정본의 과거 출력을 비웠습니다.
 
-## Remaining limits
+## 남아 있는 한계
 
-The revised notebooks have not been retrained or verified end to end. The source of the original normalization constants is still unconfirmed. Original checkpoints and Optuna study results are unavailable. Historical test accuracy cannot be verified as the intended ensemble's performance from the retained materials alone.
+수정된 노트북은 다시 학습하거나 처음부터 끝까지 실행해 검증하지 않았습니다. 기존 정규화 상수의 출처도 아직 확인하지 못했습니다. 원본 체크포인트와 Optuna 탐색 결과가 남아 있지 않아, 보관한 자료만으로 과거 테스트 정확도가 의도한 앙상블의 성능인지 검증할 수 없습니다.
 
-The test split has already been examined. A new run on that split should not be described as evaluation on previously unseen test data.
+해당 테스트 세트는 이미 결과를 확인한 상태입니다. 같은 세트로 새 실험을 하더라도 처음 접하는 테스트 데이터에 대한 평가로 설명해서는 안 됩니다.
 
-The fixed-parameter and Optuna notebooks use different schedulers. They do not isolate the effect of hyperparameter search.
+고정 설정 노트북과 Optuna 노트북은 서로 다른 학습률 스케줄러를 사용하므로, 하이퍼파라미터 탐색만의 효과를 분리해 비교한 실험은 아닙니다.
 
-[Back to project](README.md)
+[프로젝트로 돌아가기](README.md)

@@ -1,42 +1,42 @@
-# DermaMNIST Classification Model
+# DermaMNIST 이미지 분류 모델
 
-**2025 · Independent project · Model training experience**
+**2025 · 개인 프로젝트 · 모델 학습 경험**
 
-I chose DermaMNIST as my first deep-learning project because I was interested in medical image analysis and could access a public dataset. I used an ImageNet-pretrained MobileNetV2, replaced its classifier for seven classes, and fine-tuned the model.
+의료영상 분석에 관심이 있었고 공개 데이터셋을 활용할 수 있어 첫 딥러닝 프로젝트로 DermaMNIST를 선택했습니다. ImageNet으로 사전 학습한 MobileNetV2의 분류층을 7개 범주에 맞게 교체하고 전체 모델을 미세조정했습니다.
 
-[한국어 프로젝트 기록](project-notes.ko.md) · [Fixed-parameter notebook](notebooks/dermamnist_baseline.ipynb) · [Optuna notebook](notebooks/dermamnist_optuna.ipynb)
+[프로젝트 기록](project-notes.ko.md) · [고정 설정 학습 노트북](notebooks/dermamnist_baseline.ipynb) · [Optuna 탐색 노트북](notebooks/dermamnist_optuna.ipynb)
 
-## What I tried
+## 시도한 내용
 
-I selected MobileNetV2 because its lightweight architecture seemed suitable for trying training settings with limited computing resources. I included a learning-rate scheduler from the start and used AdamW as the optimizer.
+제한된 연산 자원에서 여러 학습 설정을 시도하기에 적합하다고 생각해 가벼운 구조의 MobileNetV2를 선택했습니다. 처음부터 학습률 스케줄러를 포함했고, 최적화 알고리즘으로 AdamW를 사용했습니다.
 
-While checking validation loss and accuracy across epochs, I noticed that the lowest-loss checkpoint and highest-accuracy checkpoint were not always the same. I tried combining saved checkpoints and explored Optuna to compare hyperparameter settings.
+에포크별 검증 손실과 정확도를 확인하면서 손실이 가장 낮은 체크포인트와 정확도가 가장 높은 체크포인트가 항상 같지는 않다는 점을 확인했습니다. 저장된 체크포인트를 결합하는 앙상블을 시도했고, 하이퍼파라미터 설정을 비교하기 위해 Optuna도 사용했습니다.
 
-| Component | Configuration in the notebooks |
+| 구성 요소 | 노트북에 기록된 설정 |
 | --- | --- |
-| Model | ImageNet-pretrained MobileNetV2; seven-class classifier; full-model fine-tuning |
-| Optimizer | AdamW |
-| Scheduler | CosineAnnealingLR in the fixed-parameter notebook; CosineAnnealingWarmRestarts in the Optuna notebook |
-| Ensemble | Mean logits from selected epoch checkpoints of the same architecture |
-| Optuna parameters | Feature-extractor learning rate, classifier learning rate, weight decay |
+| 모델 | ImageNet 사전 학습 MobileNetV2, 7개 범주 분류층, 전체 모델 미세조정 |
+| 최적화 알고리즘 | AdamW |
+| 학습률 스케줄러 | 고정 설정 노트북은 CosineAnnealingLR, Optuna 노트북은 CosineAnnealingWarmRestarts |
+| 앙상블 | 동일한 모델 구조에서 선택한 에포크별 체크포인트의 로짓 평균 |
+| Optuna 탐색 항목 | 특징 추출부 학습률, 분류층 학습률, 가중치 감쇠 |
 
-Other settings retained in the notebooks include augmentation, class-weighted focal loss, and Mixup. The table highlights the choices discussed in my project account; it is not a claim that I designed a new network architecture.
+이외에도 노트북에는 데이터 증강, 클래스 가중치를 적용한 초점 손실(focal loss), Mixup 설정이 남아 있습니다. 위 표는 프로젝트를 설명하며 다룬 선택을 요약한 것이며, 새로운 신경망 구조를 직접 설계했다는 의미는 아닙니다.
 
-## Results and what I learned
+## 결과와 배운 점
 
-My recollection is that ensembling and hyperparameter tuning did not produce a large improvement. The retained files do not provide a complete comparison table or Optuna study results, so I do not report a measured gain from either method.
+당시에는 앙상블과 하이퍼파라미터 조정으로 큰 성능 향상을 얻지 못했던 것으로 기억합니다. 현재 남아 있는 파일에는 완전한 비교 표나 Optuna 탐색 결과가 없어 두 방법의 개선 폭을 측정값으로 제시하지 않았습니다.
 
-The original notebook contains a test-ensemble accuracy of **86.93%**. This is a historical saved output, not a result from the revised notebooks. During code review, a checkpoint-ranking problem was found, and the original checkpoint files are unavailable. The score therefore cannot currently be verified against the intended ensemble selection. See [the result record](results/historical_results.json) and [revision notes](revision-notes.md).
+원본 노트북에는 테스트 앙상블 정확도 **86.93%**가 저장되어 있습니다. 이는 과거 저장 출력이며 수정된 노트북의 실행 결과가 아닙니다. 코드 검토에서 체크포인트 순위 관리 문제를 발견했고, 원본 체크포인트 파일도 남아 있지 않습니다. 따라서 의도한 앙상블 선택 방식으로 얻은 점수인지 현재는 검증할 수 없습니다. 자세한 내용은 [결과 기록](results/historical_results.json)과 [코드 변경 기록](revision-notes.md)에 정리했습니다.
 
-This project helped me understand the training loop: making predictions, calculating loss, updating weights, and checking validation results. It also taught me that adding a method does not automatically improve accuracy, and that checkpoint handling is part of a reliable evaluation.
+이 프로젝트를 통해 예측, 손실 계산, 가중치 갱신, 검증 결과 확인으로 이어지는 학습 과정을 이해하게 되었습니다. 기법을 추가한다고 정확도가 자동으로 높아지지는 않으며, 체크포인트 관리 역시 신뢰할 수 있는 평가의 일부라는 점을 배웠습니다.
 
-## Code status
+## 코드의 현재 상태
 
-The notebooks in this repository are the 2026 revision of the 2025 project. They separate training stages and correct checkpoint tracking. They have **not been retrained**. Normalization provenance and end-to-end execution still need verification. The two notebooks also use different schedules, so their difference is not a controlled estimate of Optuna's effect.
+공개한 노트북은 2025년 프로젝트를 2026년에 정리한 수정본입니다. 학습 단계를 나누고 체크포인트 추적 방식을 수정했지만 **아직 다시 학습하지 않았습니다.** 정규화 상수의 출처와 전체 실행 과정도 추가 검증이 필요합니다. 두 노트북의 학습률 스케줄러가 다르므로 결과 차이를 Optuna의 효과만으로 해석할 수 없습니다.
 
-## References
+## 참고 자료
 
-- [MedMNIST dataset](https://medmnist.com/)
+- [MedMNIST 데이터셋](https://medmnist.com/)
 - [Torchvision MobileNetV2](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v2.html)
 
-[Back to portfolio](../../README.md)
+[포트폴리오로 돌아가기](../../README.md)

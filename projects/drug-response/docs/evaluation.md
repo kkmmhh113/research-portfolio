@@ -1,50 +1,50 @@
-# Molecular Structure-Based Drug Response Prediction
+# 분자 구조 기반 약물 반응 예측
 
-**2026–present · Independent project · Research planning**
+**2026–현재 · 개인 프로젝트 · 연구 기획**
 
-Can molecular structure help predict the response to a chemical compound that was not observed during training?
+학습에 포함되지 않은 화합물의 반응을 분자 구조를 이용해 예측하는 것을 연구 주제로 삼았습니다.
 
-My initial goal was to predict broader biological effects of compounds. After reviewing early model performance and available data, I narrowed the project to drug-induced gene-expression changes. The current project uses public SciPlex3 data from A549, K562, and MCF7 cells.
+처음에는 화합물의 다양한 생물학적 효과를 예측하고자 했습니다. 초기 모델 성능과 활용 가능한 데이터를 검토한 뒤, 약물에 의한 유전자 발현 변화로 범위를 좁혔습니다. 현재 프로젝트는 A549, K562, MCF7 세포주의 공개 SciPlex3 데이터를 사용합니다.
 
-## My decisions
+## 직접 결정한 부분
 
-I proposed using molecular structure as an input, chose to focus on gene-expression responses, and selected the three cell lines supported by the available data. The aim is to learn a relationship between chemical structure and biological response, rather than rely on drug names alone.
+분자 구조를 입력으로 활용하는 방향을 제안하고, 유전자 발현 반응에 집중하기로 정했으며, 데이터에서 지원하는 세 세포주를 선택했습니다. 화합물의 구조와 생물학적 반응 사이의 관계를 학습하는 것이 목표입니다.
 
-## Approach
+## 접근 방법
 
-The project combines molecular structure with cell-line and treatment information to predict expression changes relative to controls. Gene expression is the current measurable output; predicting broader drug effects remains a longer-term goal.
+분자 구조에 세포주와 처리 조건 정보를 결합해 대조군 대비 발현 변화를 예측합니다. 유전자 발현은 현재 측정 가능한 예측 대상이며, 더 폭넓은 약물 효과를 예측하는 것은 장기적인 목표입니다.
 
-The historical model used molecular fingerprints and descriptors together with cell, dose, time, and baseline-expression information. Conditions belonging to the same compound were kept together, and chemical scaffold groups were separated between training, validation, and evaluation.
+과거 실험 모델은 분자 지문과 분자 기술자에 세포주, 용량, 처리 시간, 기저 발현 정보를 함께 사용했습니다. 같은 화합물의 조건은 하나의 분할에 묶고, 화학적 골격 그룹이 학습·검증·평가 사이에서 겹치지 않도록 나누었습니다.
 
-## Selected historical results
+## 주요 과거 실험 결과
 
-The Phase 4 experiment used 186 compounds and 2,396 treatment conditions across three cell lines. Its outer evaluation contained 28 compounds and 359 conditions. The saved three-seed ensemble was compared with simple baselines on 978 historical response coordinates.
+Phase 4 실험에는 세 세포주에 걸친 화합물 186개와 처리 조건 2,396개를 사용했습니다. 별도로 분리한 최종 평가 세트에는 화합물 28개와 조건 359개가 포함되었습니다. 서로 다른 난수 시드 3개로 학습한 모델의 앙상블을 당시의 반응 벡터 978개 좌표에서 단순 기준 모델들과 비교했습니다.
 
-**These are results from the earlier scPerturb v1.3 dataset, with unresolved biological annotation and structure-mapping limitations. They are not final results for the rebuilt dataset.**
+**아래 수치는 생물학적 주석과 구조 매핑의 한계가 해결되지 않은 과거 scPerturb v1.3 데이터셋의 결과입니다. 데이터를 다시 구성한 뒤 얻은 최종 결과가 아닙니다.**
 
-| Saved Phase 4 result | Mean Pearson ↑ | RMSE ↓ | MAE ↓ |
+| 저장된 Phase 4 결과 | 평균 Pearson 상관계수 ↑ | RMSE ↓ | MAE ↓ |
 | --- | ---: | ---: | ---: |
-| Training-mean baseline | 0.1708 | 0.1478 | 0.0869 |
-| Context-mean baseline | 0.2992 | 0.1435 | 0.0848 |
-| Molecular-structure ensemble | **0.4326** | **0.1341** | **0.0796** |
+| 학습 데이터 평균 기준 모델 | 0.1708 | 0.1478 | 0.0869 |
+| 처리 맥락별 평균 기준 모델 | 0.2992 | 0.1435 | 0.0848 |
+| 분자 구조 기반 앙상블 | **0.4326** | **0.1341** | **0.0796** |
 
-Mean Pearson measures agreement in the response pattern, averaged over treatment conditions; it is not classification accuracy. RMSE and MAE measure error on the processed response scale. The context baseline provides a reference based on biological context without distinguishing compounds by their molecular structure.
+평균 Pearson 상관계수는 처리 조건별 반응 패턴의 일치도를 평균한 값이며, 분류 정확도가 아닙니다. RMSE와 MAE는 전처리된 반응값의 척도에서 계산한 오차입니다. 처리 맥락 기준 모델은 화합물을 분자 구조로 구분하지 않고 생물학적 맥락을 바탕으로 예측하는 비교 기준입니다.
 
-The saved mean Pearson gain over the context baseline was **0.1335**. A historical compound-block bootstrap gave a 95% interval of **0.0946–0.1720** using 2,000 resamples. This interval describes uncertainty within the old benchmark; it does not account for the subsequently discovered data issues.
+저장된 평균 Pearson 상관계수의 개선 폭은 처리 맥락 기준 모델 대비 **0.1335**였습니다. 당시 화합물 단위 블록 부트스트랩을 2,000회 재표집해 구한 95% 구간은 **0.0946–0.1720**입니다. 이 구간은 과거 벤치마크 안에서의 불확실성을 나타내며, 이후 발견한 데이터 문제는 반영하지 않습니다.
 
-The aggregate improvement was not uniform: in the 29 observations at 72 hours, the model's Pearson was **0.3891**, compared with **0.4004** for the context baseline. This small, retrospectively examined subgroup motivates further time-course evaluation.
+전체 평균의 개선이 모든 조건에서 나타나지는 않았습니다. 72시간 조건의 관측치 29개에서는 모델의 Pearson 상관계수가 **0.3891**로, 처리 맥락 기준 모델의 **0.4004**보다 낮았습니다. 사후에 살펴본 작은 하위집단이므로 시간에 따른 반응은 추가 평가가 필요합니다.
 
-## Further experiments and limitations
+## 후속 실험과 한계
 
-- **Transfer and model refinement:** a later Phase 6 ensemble recorded Pearson **0.4674** on 977 historical coordinates. It reused the previously evaluated outer set and changed the training setup and output panel, so it is retained as exploratory history rather than independent confirmation of improvement over Phase 4.
-- **Auxiliary supervision:** adding molecular-target labels did not improve the selection-fold result: Pearson **0.3852 → 0.3844**. A separate repeated-target/mechanism experiment also declined, **0.3848 → 0.3802**. Both stopped at the first selection gate without outer-test evaluation. These are development comparisons, not evidence that auxiliary supervision cannot work in general.
-- **Data review:** a later audit found an off-by-one gene-annotation issue in the v1.3 source and incorrect historical structure mappings for some compounds. The saved numbers can describe the old numerical experiment, but they cannot support named-gene biological conclusions. A separately reviewed v1.4 dataset, including the response definition and preprocessing, is still needed.
-- **Generalization:** the data come from three cancer cell lines. These results do not establish patient-level drug effects or clinical outcomes, and no superiority over published methods has been established.
+- **전이와 모델 개선:** 후속 Phase 6 앙상블은 당시의 반응 좌표 977개에서 Pearson 상관계수 **0.4674**를 기록했습니다. 이미 평가한 최종 평가 세트를 재사용했고 학습 설정과 출력 항목도 변경했으므로, Phase 4 대비 개선을 독립적으로 확인한 결과가 아닌 탐색적 실험 기록으로 남겼습니다.
+- **보조 학습 정보:** 분자 표적 라벨을 추가한 실험의 모델 선정용 폴드에서 Pearson 상관계수는 **0.3852 → 0.3844**로 개선되지 않았습니다. 별도의 반복 표적·작용기전 실험에서도 **0.3848 → 0.3802**로 낮아졌습니다. 두 실험 모두 첫 선정 단계에서 중단했고 최종 테스트는 진행하지 않았습니다. 개발 과정의 비교 결과이며, 보조 학습 정보가 일반적으로 효과가 없다는 근거는 아닙니다.
+- **데이터 검토:** 이후 점검에서 v1.3 원본의 유전자 주석이 한 칸 어긋난 문제와 일부 화합물의 잘못된 과거 구조 매핑을 확인했습니다. 저장된 수치는 당시 수치 실험을 설명할 수 있지만, 특정 유전자에 대한 생물학적 결론을 뒷받침하지 못합니다. 반응의 정의와 전처리를 포함해 별도로 검토한 v1.4 데이터셋이 필요합니다.
+- **일반화:** 데이터는 세 가지 암세포주에서 얻었습니다. 환자 수준의 약물 효과나 임상 결과를 입증하지 않으며, 기존에 발표된 방법보다 우수하다는 결론도 내리지 않았습니다.
 
-The next priority is to resolve the data and evaluation contracts before interpreting further model changes. The negative results also make it useful to test additional biological information and model complexity through controlled comparisons.
+다음 우선순위는 추가적인 모델 변경을 해석하기에 앞서 데이터와 평가 규칙을 명확히 정리하는 것입니다. 개선되지 않은 결과를 고려하면, 생물학적 정보의 추가나 모델 복잡도 증가 역시 다른 조건을 통제한 비교를 통해 확인할 필요가 있습니다.
 
-## Result record
+## 결과 기록
 
-The [reviewed result extract](../results/reviewed_results.json) contains full-precision metrics, the saved subgroup and auxiliary results, and source-file hashes. This portfolio review used existing reports without retraining or rerunning the outer evaluation. The Phase 4 frozen manifest and three checkpoint hashes matched the stored audit. The source package is described in [CODE.md](../CODE.md); raw datasets and trained weights are not distributed here.
+[검토한 결과 파일](../results/reviewed_results.json)에 반올림하지 않은 지표, 저장된 하위집단·보조 실험 결과, 원본 파일의 해시값을 포함했습니다. 이번 포트폴리오 검토에서는 재학습이나 최종 평가 재실행 없이 기존 보고서를 사용했습니다. Phase 4에서 확정한 파일 목록과 체크포인트 3개의 해시값은 저장된 점검 기록과 일치했습니다. 공개 소스의 범위는 [코드 안내](../CODE.md)에 정리했으며, 원본 데이터셋과 학습된 가중치는 배포하지 않습니다.
 
-[Back to portfolio](../../../README.md)
+[포트폴리오로 돌아가기](../../../README.md)
