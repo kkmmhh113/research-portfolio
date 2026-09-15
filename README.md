@@ -59,4 +59,5 @@ My first deep-learning project, exploring training settings, checkpoint ensemble
 ## Contact
 
 **Email** · [vlsi71@konkuk.ac.kr](mailto:vlsi71@konkuk.ac.kr)  
+**Phone** · [010-2202-8414](tel:+821022028414)  
 **GitHub** · [github.com/kkmmhh113](https://github.com/kkmmhh113)
