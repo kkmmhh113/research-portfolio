@@ -1,4 +1,4 @@
-# 모델의 흐름
+# TissuePK 모델 설명
 
 [프로젝트 소개](README.md) · [핵심 코드](model_sketch.py)
 

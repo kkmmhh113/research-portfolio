@@ -1,4 +1,4 @@
-"""조직별 약물량 변화의 계산 발췌. 시간 h, 양 mg, 부피 L을 사용합니다."""
+"""TissuePK의 조직별 약물량 계산. 시간 h, 양 mg, 부피 L을 사용합니다."""
 
 
 def equivalent_concentration(amount, volume, partition_coefficient):

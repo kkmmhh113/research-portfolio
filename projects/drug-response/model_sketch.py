@@ -1,4 +1,4 @@
-"""P/C/R 후보 모델의 주요 계산 부분. 전체 흐름은 MODEL.md 참고."""
+"""Mol2Expr의 P/C/R 후보 모델 계산. 전체 흐름은 MODEL.md 참고."""
 
 import math
 
