@@ -1,18 +1,18 @@
 # Minhyoung Kim
 
-연구 포트폴리오
+My research % portfolio
 
-[소개](#소개) · [프로젝트](#프로젝트) · [연락처](#연락처)
+[Intro](#Intro) · [Projects](#Projects) · [Contact](#Contact)
 
 ---
 
-## 소개
+## Intro
 
 건국대학교 융합생명공학과에 재학 중이며, 2027년 2월 졸업 예정입니다.
 
 분자 구조를 이용한 약물 반응 예측과 조직별 모델을 연결하는 인체 디지털 트윈에 관심이 있습니다. 또한 현재 진행 중인 프로젝트 외에도 전임상 데이터를 활용해 임상 결과를 예측하는 데 관심을 가지고 있습니다.
 
-## 프로젝트
+## Projects
 
 ### 01. Mol2Expr — 분자 구조 기반 발현 변화 예측
 
@@ -56,8 +56,7 @@
 
 ---
 
-## 연락처
+## Contact
 
 **이메일** · [vlsi71@konkuk.ac.kr](mailto:vlsi71@konkuk.ac.kr)<br>
 **전화번호** · [010-2202-8414](tel:+821022028414)<br>
-**GitHub** · [github.com/kkmmhh113](https://github.com/kkmmhh113)
