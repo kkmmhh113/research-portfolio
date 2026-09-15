@@ -1,28 +1,62 @@
 # Minhyoung Kim
 
-Undergraduate student in Integrative Bioscience and Biotechnology at Konkuk University, with expected graduation in February 2027.
+Research Portfolio
+
+[Intro](#intro) · [Projects](#projects) · [Contact](#contact)
+
+---
+
+## Intro
+
+I am an undergraduate student in Integrative Bioscience and Biotechnology at Konkuk University, with expected graduation in February 2027.
 
 I am interested in predicting drug responses from molecular structure and connecting tissue-specific models for human digital twins. In addition to my ongoing projects, I am also interested in using preclinical data to predict clinical outcomes.
 
-This portfolio brings together my ongoing research projects and a previous image-classification project.
-
 ## Projects
 
-| Project | Focus | Status | Code |
-| --- | --- | --- | --- |
-| [Molecular Structure-Based Drug Response Prediction](projects/drug-response/README.md) | Predicting gene-expression changes for unseen chemical compounds | Ongoing, 2026–present | [Source and guide](projects/drug-response/CODE.md) |
-| [Tissue-Based Modeling toward a Human Digital Twin](projects/tissue-modeling/README.md) | Connecting tissue models, starting with pharmacokinetic modeling | Ongoing, 2026–present | [Source and guide](projects/tissue-modeling/CODE.md) |
-| [DermaMNIST Classification Model](projects/dermamnist/README.md) | Fine-tuning MobileNetV2 and exploring training settings | Training project, 2025; code review, 2026 | [Code](projects/dermamnist/notebooks/) |
+### 01. Molecular Structure-Based Drug Response Prediction
 
-The first two project pages summarize the research topics, key results from earlier experiments, and limitations identified during evaluation, reflecting the work completed so far. The DermaMNIST page documents model design, the training process, and what I learned.
+> Predicting gene-expression changes from molecular structure and treatment context.
 
-## Reading the portfolio
+**2026–present · Ongoing**
 
-Each project page describes the research topic, current progress, and limitations. For a detailed Korean account of the image-classification project, see [DermaMNIST 프로젝트 기록](projects/dermamnist/project-notes.ko.md).
+A SciPlex3 project examining responses to compounds not observed during training. The project page presents the research topic, historical results, and limitations identified during data and model evaluation.
 
-The two ongoing projects include source packages, tests, and small runnable examples. Detailed evaluation records are linked from each project page. See [code verification](docs/code-verification.md) for the checks performed on this export.
+`Python` · `PyTorch` · `RDKit`
 
-## Background
+[Project overview →](projects/drug-response/README.md) · [Source code](projects/drug-response/src/my_star/) · [Code guide](projects/drug-response/CODE.md)
 
-- Konkuk University — Integrative Bioscience and Biotechnology, March 2021–February 2027 (expected).
-- Coursework in Python-based data analysis and artificial intelligence.
+---
+
+### 02. Tissue-Based Modeling toward a Human Digital Twin
+
+> Modeling drug movement and elimination across simplified tissue compartments.
+
+**2026–present · Ongoing**
+
+A PBPK modeling project comparing predicted concentration–time profiles with published human pharmacokinetic data. Current work examines numerical consistency, prediction errors, and the limits of model parameters.
+
+`Python` · `NumPy` · `SciPy`
+
+[Project overview →](projects/tissue-modeling/README.md) · [Source code](projects/tissue-modeling/src/our_star/) · [Code guide](projects/tissue-modeling/CODE.md)
+
+---
+
+### 03. DermaMNIST Classification Model
+
+> Fine-tuning MobileNetV2 for seven-class skin-lesion image classification.
+
+**2025 · Training project; code reviewed in 2026**
+
+My first deep-learning project, exploring training settings, checkpoint ensembles, and Optuna. The project page describes model design, the training process, what I learned, and the limits of the retained results.
+
+`Python` · `PyTorch` · `Torchvision` · `Optuna`
+
+[Project overview →](projects/dermamnist/README.md) · [Source code](projects/dermamnist/notebooks/)
+
+---
+
+## Contact
+
+**Email** · [vlsi71@konkuk.ac.kr](mailto:vlsi71@konkuk.ac.kr)  
+**GitHub** · [github.com/kkmmhh113](https://github.com/kkmmhh113)
