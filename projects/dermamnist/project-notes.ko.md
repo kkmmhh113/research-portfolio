@@ -37,6 +37,5 @@
 ## 자료
 
 - [프로젝트 소개와 학습 코드](README.md)
-- [코드 변경 기록](revision-notes.md)
 - [MedMNIST](https://medmnist.com/)
 - [Torchvision MobileNetV2](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v2.html)
