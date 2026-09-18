@@ -2,7 +2,7 @@
 
 **2025 · 개인 프로젝트 · 모델 학습 경험**
 
-딥러닝에 공부하던 초기에는 의료영상 분석에 관심이 있었고 공개 데이터셋을 활용할 수 있어 첫 딥러닝 프로젝트로 DermaMNIST를 선택했습니다.
+딥러닝에 공부하던 초기에는 잠깐 이미지 분석에 관심이 있었고 공개 데이터셋을 활용할 수 있어 첫 딥러닝 프로젝트로 DermaMNIST를 선택했습니다.
 
 [프로젝트 기록](project-notes.ko.md) · [기본 학습 코드](notebooks/dermamnist_baseline.ipynb) · [Optuna 탐색 코드](notebooks/dermamnist_optuna.ipynb)
 
