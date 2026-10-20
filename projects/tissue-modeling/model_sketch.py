@@ -1,11 +1,17 @@
-"""TissuePK의 조직별 약물량 계산. 시간 h, 양 mg, 부피 L을 사용합니다."""
+"""TissuePK 구획 계산의 일부. 시간 h, 약물량 mg, 부피 L을 사용합니다.
+
+구획별 약물량의 변화율을 계산하며, 전체 적분 과정은 포함하지 않습니다.
+모델의 연결과 매개변수의 의미는 MODEL.md 참고.
+"""
 
 
 def equivalent_concentration(amount, volume, partition_coefficient):
+    """조직의 약물량을 분배계수를 반영한 혈액 환산 농도로 변환."""
     return max(amount, 0.0) / (volume * partition_coefficient)
 
 
 def michaelis_menten(vmax, km, unbound_concentration):
+    """비결합 약물 농도로 포화 가능한 대사 속도 계산."""
     concentration = max(unbound_concentration, 0.0)
     return vmax * concentration / (km + concentration)
 

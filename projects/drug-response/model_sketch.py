@@ -1,4 +1,4 @@
-"""Mol2Expr의 P/C/R 후보 모델 계산. 전체 흐름은 MODEL.md 참고."""
+"""Mol2Expr 후보 구성에서 발췌한 계산. 전체 흐름과 포함 범위는 MODEL.md 참고."""
 
 import math
 
@@ -33,7 +33,7 @@ class GraphMessageLayer(nn.Module):
 
 
 def dose_gate(perturbation, normalized_dose, potency_predictor, slope_raw):
-    """분자 표현의 크기를 조절합니다. normalized_dose의 모양은 [batch, 1]."""
+    """용량으로 분자 특징을 조절합니다. normalized_dose: [batch, 1]."""
     potency = potency_predictor(perturbation)
     midpoint = torch.tanh(potency[:, :1])
     slope = F.softplus(slope_raw + 0.5 * torch.tanh(potency[:, 1:2])) + 1e-3
@@ -42,7 +42,7 @@ def dose_gate(perturbation, normalized_dose, potency_predictor, slope_raw):
 
 
 def condition_perturbation(effective_perturbation, biological, context_film):
-    """세포와 처리 맥락으로 분자 특징을 조절하는 FiLM 형태의 계산."""
+    """세포와 처리 조건으로 분자 특징을 조절하는 FiLM 형태의 계산."""
     scale, shift = context_film(biological).chunk(2, dim=-1)
     return effective_perturbation * (1.0 + 0.5 * torch.tanh(scale)) + shift
 
