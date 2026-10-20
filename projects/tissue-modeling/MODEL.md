@@ -9,7 +9,8 @@
 ## 조직을 연결하는 방식
 
 ```mermaid
-flowchart LR
+%%{init: {"flowchart": {"rankSpacing": 20, "nodeSpacing": 28}}}%%
+flowchart TD
     Oral["경구 투여"] --> GI["위 · 장 내강"]
     GI --> Gut["장벽"]
     Gut -->|문맥| Liver["간"]

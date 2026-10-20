@@ -9,6 +9,7 @@
 ## 전체 흐름
 
 ```mermaid
+%%{init: {"flowchart": {"rankSpacing": 20, "nodeSpacing": 28}}}%%
 flowchart TD
     A["원자 · 결합<br/>분자 특성"] --> P["분자 표현"]
     P --> D["용량에 따른<br/>특징 조절"]
