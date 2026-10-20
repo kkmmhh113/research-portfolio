@@ -2,7 +2,7 @@
 
 [프로젝트 소개](README.md) · [핵심 코드](model_sketch.py)
 
-약물이 몸에 들어온 뒤 여러 조직을 거쳐 이동하고 제거되는 과정을 표현해 보고 있습니다. 현재는 몸을 몇 개의 구획으로 단순화한 PBPK 모델을 바탕으로, 각 구획이 어떤 역할을 하는지 공부하고 있습니다.
+약물이 몸에 들어온 뒤 여러 조직을 거쳐 이동하고 제거되는 과정을 계산해 보려 했습니다. AI 도구의 도움을 받아 구현한 코드를 살펴보며, 몸을 몇 개의 구획으로 단순화하는 가정과 각 매개변수의 의미를 공부하고 있습니다. 여기서 계산하는 것은 약물량과 농도이며, 약물의 치료 효과를 검증한 모델은 아닙니다.
 
 ## 조직을 연결하는 방식
 
@@ -45,9 +45,9 @@ flowchart LR
 
 | 자료 | 살펴보는 내용 |
 | --- | --- |
-| [Claassen 등의 에날라프릴 PBPK 모델](https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2013.00004/full) | 장·간·신장을 연결하는 방식과 대사·배설 매개변수의 배경 |
+| [Claassen 등의 에날라프릴 PBPK·PD 모델](https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2013.00004/full) | 체내 이동·대사와 호르몬 반응을 연결한 연구. 이 중 구획 연결과 대사·배설 매개변수를 참고 |
 | [Open Systems Pharmacology 문서](https://docs.open-systems-pharmacology.org/working-with-pk-sim/pk-sim-documentation/pk-sim-compounds-defining-inhibition-induction-processes) | 농도에 따라 대사 속도가 달라지는 방식과 관련 변수의 의미 |
-| [PK-DB](https://academic.oup.com/nar/article/49/D1/D1358/5957165) | 모델의 예측과 비교할 사람 약동학 데이터 |
+| [PK-DB](https://academic.oup.com/nar/article/49/D1/D1358/5957165) | 카페인·파라세타몰·에날라프릴 등의 투여 조건과 시간별 관측 농도 |
 
 [핵심 코드](model_sketch.py)에는 장·간·신장에서 약물량이 달라지는 부분을 담았습니다. 지금은 모델을 더 복잡하게 만들기보다, 각 부분의 의미와 예측이 잘 맞지 않은 이유를 이해하는 데 집중하고 싶습니다.
 
